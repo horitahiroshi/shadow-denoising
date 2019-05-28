@@ -49,7 +49,7 @@ Then, the output of this step must be the mask with all shadow regions in the im
 
 ## **4. Removing the shadows**
 
-
+Once the shadow regions are found, it is possible to enhance them by equalizing the histogram.
 
 ## **Bibliography**
 [1] [TIAN, Jiandong; SUN, Jing; TANG, Yandong. *Tricolor Attenuation Model for Shadow Detection*. IEEE TRANSACTIONS ON IMAGE PROCESSING, vol. 18, pp.2355-2363. 2009.](/bibliography/Tricolor_Attenuation_Model_for_Shadow_Detection.pdf)
