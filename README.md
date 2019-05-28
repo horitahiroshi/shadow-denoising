@@ -25,31 +25,28 @@ The input images of this program must be from eucalyptus plantation's streets (s
 The self shadow is the part of an object that is not illuminated by direct light; the cast shadow is the dark area projected by an object on the background" [1].
 
 ![shadow](/bibliography/shadow_explanation.jpg)
+
 **Figure 2** - Explanation of shadow (picture from [2]).
 
 The shadow of an object is partioned into umbra and panunbra regions. The umbra region is the part of the shadowed surface in which the direct light source is completely obscured by the occluding object. The penumbra is the part of the surface where the light source is only partially occluded, and it occurs when the light source is not a point source or due to diffraction of light rays [2].
 
-In Figure 2, give a clor image $F$, $[F_{NS_R} \space F_{NS_G} \space F_{NS_B}]$ denote the tricolor vector of a pixel in a nonshadow background region, and $[F_{S_R} \space F_{S_G} \space F_{S_B}]$ as a pixel value in the corresponding shadow region.
-
-<!-- Assuming that the shadow region has the same response of reflectance as the nonshadow region, and $[\Delta R \space\Delta G \space\Delta B]$ as thethe value attenuation vector, the relationship between $[F_{NS_R} \space F_{NS_G} \space F_{NS_B}]$ and $[F_{S_R} \space F_{S_G} \space F_{S_B}]$ is
-$$
-\begin{cases}
-F_{S_R} = F_{NS_R} - \Delta R\\
-F_{S_G} = F_{NS_G} - \Delta G\\
-F_{S_B} = F_{NS_B} - \Delta B
-\end{cases}
-$$ -->
-
-
 ## **3. Detecting the shadows**
 
-Shadow detection algorithm must find the image regions in which there are shadows, based on pixel light intensity,i.e., changing the color space from $RGB$ to $HSV$, and running a limiarization based on layer $V$ (value) thresholding.
+Shadow detection algorithm must find the image regions in which there are shadows, based on pixel light intensity.
+
+For that the following methods will be implemented: color analysis (*HSV* color space might be used), and segmentation by limiarization.
+<!-- and running a limiarization based on layer $V$ (value) thresholding. -->
 
 Then, the output of this step must be the mask with all shadow regions in the image.
 
 ## **4. Removing the shadows**
 
-Once the shadow regions are found, it is possible to enhance them by equalizing the histogram.
+Once the shadow regions are found, it is possible to restore them as if there is no shadow in the scenario.
+
+With this in mind, it is necessary to analyse the color in non-shadowed regions as a base for reranging the shadowed region's color intensities, and in the end use a filter to remove the edges between the unshadowed regions and the non-shadowed regions.
+<!-- enhance them by reranging the pixel intensities according to non-shadow regions histogram. -->
+
+P.S.: unshadowed regions are the shadowed regions with shadow removed; and non-shadowed regions are the regions in which there have never been shadow from the beginning.
 
 ## **Bibliography**
 [1] [TIAN, Jiandong; SUN, Jing; TANG, Yandong. *Tricolor Attenuation Model for Shadow Detection*. IEEE TRANSACTIONS ON IMAGE PROCESSING, vol. 18, pp.2355-2363. 2009.](/bibliography/Tricolor_Attenuation_Model_for_Shadow_Detection.pdf)
