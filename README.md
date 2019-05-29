@@ -30,20 +30,27 @@ The self shadow is the part of an object that is not illuminated by direct light
 
 The shadow of an object is partioned into umbra and panunbra regions. The umbra region is the part of the shadowed surface in which the direct light source is completely obscured by the occluding object. The penumbra is the part of the surface where the light source is only partially occluded, and it occurs when the light source is not a point source or due to diffraction of light rays [2].
 
-## **3. Detecting the shadows**
+## **3. Methodes**
+
+### **3.1. Detecting the shadows**
 
 Shadow detection algorithm must find the image regions in which there are shadows, based on pixel light intensity.
 
-For that the following methods will be implemented: color analysis (*HSV* color space might be used), and segmentation by limiarization.
+For that the following methods will be implemented: 
+- color analysis (*HSV* color space might be used);
+- segmentation by limiarization.
 <!-- and running a limiarization based on layer $V$ (value) thresholding. -->
 
 Then, the output of this step must be the mask with all shadow regions in the image.
 
-## **4. Removing the shadows**
+### **3.2. Removing the shadows**
 
 Once the shadow regions are found, it is possible to restore them as if there is no shadow in the scenario.
 
-With this in mind, it is necessary to analyse the color in non-shadowed regions as a base for reranging the shadowed region's color intensities, and in the end use a filter to remove the edges between the unshadowed regions and the non-shadowed regions.
+With this in mind, it is necessary to:
+- analyse the color in non-shadowed regions;
+- re-ranging the shadowed region's color intensities;
+- filter to remove the edges between the unshadowed regions and the non-shadowed regions.
 <!-- enhance them by reranging the pixel intensities according to non-shadow regions histogram. -->
 
 P.S.: unshadowed regions are the shadowed regions with shadow removed; and non-shadowed regions are the regions in which there have never been shadow from the beginning.
