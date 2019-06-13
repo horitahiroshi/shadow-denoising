@@ -38,7 +38,7 @@ Shadow detection algorithm must find the image regions in which there are shadow
 
 For that the following methods will be implemented: 
 - color analysis (*HSV* color space might be used);
-- segmentation by limiarization.
+- segmentation using adaptive thresholding.
 <!-- and running a limiarization based on layer $V$ (value) thresholding. -->
 
 Then, the output of this step must be the mask with all shadow regions in the image.

@@ -10,38 +10,40 @@ Final Project 2019: Shadow Denoising
 import numpy as np
 from scipy.fftpack import fftn, ifftn, fftshift
 import imageio
+import utils
+import kmeans
 import matplotlib.pyplot as plt
 import ipdb
 
 """
-Enhancement methodes
+Enhancement routine
 """
+def find_shadow():
+    result = 0
+    return result
 
 """
-Restoration methodes
+Restoration routine
 """
+def restore_shadowed_region():
+    unshadowed_region = 0
+    return unshadowed_region
 
 def main():
     # read shadowed image to be processed
-    g = imageio.imread("../images/shadow1.jpg")
+    g = imageio.imread("../images/shadow5.jpg")
     # ipdb.set_trace()
+    # rbin = utils.limiarization(g[:,:,0],0.5)
+    rbin = kmeans.main(g, 1, 3, 5)
 
-    plt.figure(0)
-    plt.subplot(221)
+    plt.figure(figsize=(16,16))
+    plt.subplot(121)
     plt.imshow(g)
-    plt.title("Shadowed image")
-    plt.subplot(222)
-    plt.imshow(g[:,:,0], cmap='gray')
-    plt.title("Red image")
-    plt.subplot(223)
-    plt.imshow(g[:,:,1], cmap='gray')
-    plt.title("Green image")
-    plt.subplot(224)
-    plt.imshow(g[:,:,2], cmap='gray')
-    plt.title("Blue image")
+    plt.title("original")
+    plt.subplot(122)
+    plt.imshow(rbin)
+    plt.title("clusterized")
     plt.show()
-
-    print("Main function")
 
 # Call main function
 if __name__ == '__main__':
