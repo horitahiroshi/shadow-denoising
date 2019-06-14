@@ -3,7 +3,7 @@ Name: Luiz Alberto Hiroshi Horita
 No. USP: 6882704
 SCC5830 - Image processing
 2019/1
-Final Project 2019: Shadow Denoising
+Final Project 2019: Shadow Removing
 
 Library with kmeans method to segment the image into 2 clusters.
 """
@@ -26,7 +26,7 @@ def rerange(img):
     img_u8 = (((img.astype(float) - a) * (d - c) / (b - a)) + c).astype(np.uint8)
 
     return img_u8
-    
+
 # def initialize_centroids(dataset, attributeOption, k, S, r):
 def initialize_centroids(dataset, k, S, r):
     # initialise the random seed

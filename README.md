@@ -1,4 +1,4 @@
-# **Shadow denoising for image segmentation in forest ground image**
+# **Shadow removing for image segmentation in forest ground image**
 
 **Luiz Alberto Hiroshi Horita**
 

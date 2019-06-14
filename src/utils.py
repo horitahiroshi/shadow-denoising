@@ -3,7 +3,7 @@ Name: Luiz Alberto Hiroshi Horita
 No. USP: 6882704
 SCC5830 - Image processing
 2019/1
-Final Project 2019: Shadow Denoising
+Final Project 2019: Shadow Removing
 
 Library with general image processing methodes.
 """
