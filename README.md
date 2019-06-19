@@ -17,6 +17,7 @@ For this work, it is important to notice that as its goal is to detect and remov
 The input images of this program must be from eucalyptus plantation's streets (see example on Figure1 below). All images used in this project was acquired by the author.
 
 ![eucalyptus](/images/shadowE.jpg)
+
 **Figure 1** - Example of shadow noise on an eucalyptus plantation's street.
 
 ## **2. The shadow**
@@ -36,7 +37,12 @@ The cast shadow of an object is partioned into umbra and penunbra regions. The u
 
 Shadow detection algorithm must find the image regions in which there are shadows (umbra and penumbra), based on luminance of each pixel.
 
-#### **3.1.1. Color analysis**
+#### **3.1.1. Color spaces analysis**
+
+First of all, an analysis of the possible color spaces and grayscales was done to visualy select the best option for limiarizing the shadowed regions on scenario.
+
+On first try, the V (value) layer of HSV color space was used to find the shadowed regions on image (see the [1stTry notebook](./notebook/1stTry.ipynb)).
+
 #### **3.1.2. Clustering image into lit, penumbra and umbra regions**
 #### **3.1.3. Filtering clusters from noise**
 
