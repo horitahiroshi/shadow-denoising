@@ -39,20 +39,50 @@ Shadow detection algorithm must find the image regions in which there are shadow
 
 #### **3.1.1. Color spaces analysis**
 
-First of all, an analysis of the possible color spaces and grayscales was done to visualy select the best option for limiarizing the shadowed regions on scenario.
+First of all, an analysis of the possible color spaces and their combination into a grayscale was done to choose the best option for shadowed regions detection on scenario.
 
 On first try, the V (value) layer of HSV color space was used to find the shadowed regions on image (see the [1stTry notebook](./notebook/1stTry.ipynb)).
 
+Then, after the last assignment, it was presented the luminance as a combination of RGB colors as shown, whach was used as attribute to find shadowed regions.
+
+    *luminance = 0.299 * R + 0.587 * G + 0.114 * B*
+
 #### **3.1.2. Clustering image into lit, penumbra and umbra regions**
+
+Determined the attribute to be used to separate the lit and shadowed (penumbra and umbra) regions, which is luminance, it was done. The result of this step was the following.
+
+![luminance clusters](./notebook/3rdTry_luminance_clusters.png)
+
+Figure - luminance clustering to find lit, penumbra and umbra regions.
+
+![lit_penumbra_umbr](./notebook/lit_penumbra_umbra.png)
+
+Figure - croped scene into lit, penumbra and umbra regions
+
 #### **3.1.3. Filtering clusters from noise**
 
 The output of this first step must be a mask with lit, penumbra and umbra regions of the image.
 
+![filtered_luminance_clusters](./notebook/filtered_luminance_clusters.png)
+
+Figure - luminance clusters filtered.
+
 ### **3.2. Clustering the detected regions**
 
+![subregions_clustering](./notebook/4thTry_subregions_clustering.png)
+
+Figure - lit, penumbra and umbra's subclusters.
+
 #### **3.2.1. Clustering lit regions**
+
+
+
 #### **3.2.2. Clustering penumbra regions**
+
+
+
 #### **3.2.3. Clustering umbra regions**
+
 
 
 ### **3.3. Removing the shadows**
@@ -60,7 +90,14 @@ The output of this first step must be a mask with lit, penumbra and umbra region
 <!-- Once the shadow regions are found, it is possible to restore them as if there is no shadow in the scenario. -->
 
 #### **3.3.1. Clusters analysis**
+
+
+
 #### **3.3.2. Enhancing histograms from shadow regions**
+
+![result](./notebook/resulting_shadow_removal.png)
+
+Figure - Result of shadow removal.
 
 <!-- With this in mind, it is necessary to:
 - analyse the color in non-shadowed regions;
@@ -68,6 +105,13 @@ The output of this first step must be a mask with lit, penumbra and umbra region
 - filter to remove the edges between the unshadowed regions and the non-shadowed regions. -->
 <!-- enhance them by reranging the pixel intensities according to non-shadow regions histogram. -->
 
+## **4. Results and discussion **
+
+![lined_result](./notebook/lined_results.png)
+
+![horizontal_analysis](./notebook/horiontal_analysis.png)
+
+![vertical_analysis](./notebook/vertical_analysis.png)
 
 ## **Bibliography**
 [1] [TIAN, Jiandong; SUN, Jing; TANG, Yandong. *Tricolor Attenuation Model for Shadow Detection*. IEEE TRANSACTIONS ON IMAGE PROCESSING, vol. 18, pp.2355-2363. 2009.](/bibliography/Tricolor_Attenuation_Model_for_Shadow_Detection.pdf)
