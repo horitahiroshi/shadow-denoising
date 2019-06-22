@@ -45,7 +45,7 @@ On first try, the V (value) layer of HSV color space was used to find the shadow
 
 Then, after the last assignment, it was presented the luminance as a combination of RGB colors as shown, whach was used as attribute to find shadowed regions.
 
-    *luminance = 0.299 * R + 0.587 * G + 0.114 * B*
+    luminance = 0.299 * R + 0.587 * G + 0.114 * B
 
 #### **3.1.2. Clustering image into lit, penumbra and umbra regions**
 
