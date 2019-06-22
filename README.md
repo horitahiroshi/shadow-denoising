@@ -73,9 +73,9 @@ P.S.: observe that because this is a scenario with many small details, many info
 
 ### **3.2. Clustering the luminance clusters based on color**
 
-Since the goal of this algorithm is to remove shadow by redistributing the pixel values from shadowed regions based on lit regions' histogram, it is necessary to find each subregions from luminance clustering so the equalization is done properly.
+Since the goal of this algorithm is to remove shadow by redistributing the pixel values from shadowed regions based on lit regions' histogram, it is necessary to find each subregions from luminance clustering so the shaow removal is done properly.
 
-In other words, the shadowed regions of road must be equalized based on lit region of road, and so for forest leafs and woods regions.
+In other words, the color levels from shadowed regions of road must be readjusted based on lit region of road, and so for forest leafs and woods regions.
 
 Then, in this step clustering based on color seems to be the most appropriate approach.
 The result of this step can be seen at the Figure 6.
@@ -93,11 +93,15 @@ P.S.: observe the clusters labeled 1 have centroid on red color (R, G, B = 255, 
 
 ### **3.3. Removing the shadows**
 
-In the end, now we have all luminance clusters an the respective subclusters, the histogram equalization can be done for each of them.
+In the end, now we have all luminance clusters an the respective subclusters, the readjustment of color levels on each of them can be done.
 
 #### **3.3.2. Enhancing histograms from shadow regions**
 
 Basically, what was done in this step is the enhancement of the histogram on each regions clustered (road shadows, green forests leafs shadows and forest's woods shadows) based on each respective lit regions. The obtained result can be seen on Figure 7.
+
+In more details, for each of color clusters, the mean value was taken to verify the difference between shadowed region and the lit region, so this diff value can be added on shadow levels to lighten the image.
+
+This iteration is repeated for each color channel on each shadowed color cluster with its correspondent lit color cluster.
 
 ![result](./notebook/resulting_shadow_removal.png)
 
