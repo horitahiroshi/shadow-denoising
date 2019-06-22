@@ -142,19 +142,23 @@ def remove_shadow(img, mask, ref_mask):
     # loop for each color layer
     for c in range(3):
         refmean = np.average(img[np.where(ref_mask==1)][:,c])
-        # refstd = np.std(img[np.where(ref_mask==1)][:,c])
+        
         refmin = np.min(img[ref_coordinates][:,c])
         refmax = np.max(img[ref_coordinates][:,c])
         
-        # maskmean = np.average(img[np.where(mask==1)][:,c])
+        maskmean = np.average(img[np.where(mask==1)][:,c])
         maskmin = np.min(img[mask_coordinates][:,c])
         maskmax = np.max(img[mask_coordinates][:,c])
         
-        # diff = refmean - maskmean
+        diff = refmean - maskmean
 
         for i in range(mask_coordinates[0].shape[0]):
             x,y,z=mask_coordinates[0][i],mask_coordinates[1][i],c
-            img[x,y,z]=((float(img[x,y,z])-maskmin)*(refmax - refmin)/(maskmax - maskmin)) + refmin
-            # img[x,y,z]+= (diff + refstd)
+#             img[x,y,z]=((float(img[x,y,z])-maskmin)*(refmax - refmin)/(maskmax - maskmin)) + refmin
+            newvalue = float(img[x,y,z]) + float(diff)
+            if(newvalue > 255):
+                img[x,y,z] = 255
+            else:
+                img[x,y,z] = int(newvalue)
         
     return img
