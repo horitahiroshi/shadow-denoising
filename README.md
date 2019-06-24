@@ -55,13 +55,13 @@ Determined the luminance as the attribute to be used to separate the lit and sha
 
 ![luminance clusters](./notebook/3rdTry_luminance_clusters.png)
 
-Figure 3 - luminance clustering to find lit, penumbra and umbra regions.
+**Figure 3** - luminance clustering to find lit, penumbra and umbra regions.
 
 The cropped regions of the image can be seen at Figure 4.
 
 ![lit_penumbra_umbr](./notebook/lit_penumbra_umbra.png)
 
-Figure 4 - cropped scene into lit, penumbra and umbra regions
+**Figure 4** - cropped scene into lit, penumbra and umbra regions
 
 #### **3.1.3. Filtering clusters from noise**
 
@@ -69,7 +69,7 @@ After the luminance clustering step, the adaptive filter was applied so the nois
 
 ![filtered_luminance_clusters](./notebook/filtered_luminance_clusters.png)
 
-Figure 5 - luminance clusters filtered.
+**Figure 5** - luminance clusters filtered.
 
 P.S.: observe that because this is a scenario with many small details, many information actually is lost through these steps.
 
@@ -84,7 +84,7 @@ The result of this step can be seen at the Figure 6.
 
 ![subregions_clustering](./notebook/4thTry_subregions_clustering.png)
 
-Figure 6 - lit, penumbra and umbra's subclusters based on colors.
+**Figure 6** - lit, penumbra and umbra's subclusters based on colors.
 
 Analysing the previews step's result, visually can be seen that:
 - On penumbra regions: clusters 1 and 3 can be considered as road, cluster 2 as green leafs from forest.
@@ -107,7 +107,7 @@ This iteration is repeated for each color channel on each shadowed color cluster
 
 ![result](./notebook/resulting_shadow_removal.png)
 
-Figure 7 - Result of shadow removal.
+**Figure 7** - Result of shadow removal.
 
 ## **4. Results and discussion**
 
@@ -123,15 +123,15 @@ Same can be observed with vertical section plotting (see on Figure 10).
 
 ![lined_result](./notebook/lined_results.png)
 
-Figure 8 - Original and resultant images with marked line under which the values analysis were done (see Figures 9 and 10).
+**Figure 8** - Original and resultant images with marked line under which the values analysis were done (see Figures 9 and 10).
 
 ![horizontal_analysis](./notebook/horiontal_analysis.png)
 
-Figure 9 - horizontal section analysis.
+**Figure 9** - horizontal section analysis.
 
 ![vertical_analysis](./notebook/vertical_analysis.png)
 
-Figure 10 - vertical section analysis.
+**Figure 10** - vertical section analysis.
 
 ### **4.1. The failures and success**
 
@@ -143,7 +143,7 @@ Consisted of finding shadowed regions by limiarizing the image based on V chanel
 
 ![1stFail](./notebook/1stFail.png)
 
-Figure 11 - 1st approach failed result.
+**Figure 11** - 1st approach failed result.
 
 **ii. Second approach: luminance limiarization and color clustering.**
    
@@ -151,7 +151,7 @@ In this approach the main steps were limiarizing the image based on V channel of
 
 ![2ndFail](./notebook/2ndFail.png)
 
-Figure 12 - 2nd approach failed result.
+**Figure 12** - 2nd approach failed result.
 
 **iii. Third approach: luminance clustering and color-position clustering.**
 
@@ -159,7 +159,7 @@ In this approach the main steps were clustering the image into lit, penumbra and
 
 ![3rdtFail](./notebook/3rdFail.png)
 
-Figure 13 - 3rd approach failed result.
+**Figure 13** - 3rd approach failed result.
 
 **iv. Forth approach: luminance clustering and color clustering**
 
@@ -167,7 +167,7 @@ This was the successfull approach, which was explained in this README.md report.
 
 ![4thSuccess](./notebook/4thTry.png)
 
-Figure 14 - 4th approache's result.
+**Figure 14** - 4th approache's result.
 
 ### **4.2. Algorithm applied on unseen images**
 
@@ -179,23 +179,23 @@ As can be seen, the results on first two images are reasonable, but on last thre
 
 ![shadowB](./results/resulting_shadowB.png)
 
-Figure 15 - Unseen image 1.
+**Figure 15** - Test on unseen image 1.
 
 ![shadowC](./results/resulting_shadowC.png)
 
-Figure 16 - Unseen image 2.
+**Figure 16** - Test on unseen image 2.
 
 ![shadowF](./results/resulting_shadowF.png)
 
-Figure 17 - Unseen image 3.
+**Figure 17** - Test on unseen image 3.
 
 ![shadowA](./results/resulting_shadowA.png)
 
-Figure 18 - Unseen image 4.
+**Figure 18** - Test on unseen image 4.
 
 ![shadowD](./results/resulting_shadowD.png)
 
-Figure 19 - Unseen image 5.
+**Figure 19** - Test on unseen image 5.
 
 ## **5. Conclusion**
 
@@ -209,13 +209,13 @@ To better understand this conclusion, a simple test was done by limiarizing the 
 
 ![Comparing shadowed and unshadowed limiarizations](./notebook/shadowXunshadow_limiarization.png)
 
-Figure 20 - Comparing limiarization of original image and the unshadowed image for navigable area detection based on color.
+**Figure 20** - Comparing limiarization of original image and the unshadowed image for navigable area detection based on color.
 
 A quick example of navigable area can be done by applying some morphological operations on binarized Hue unshaowed image showed above (see implementation on [Comparing_limiarization notebook](./notebook/Comparing_limiarization.ipynb)).
 
 ![Comparing shadowed and unshadowed limiarizations](./notebook/navigable_area_detection.png)
 
-Figure 21 - Example of navigable area detection by applying morphological operations on binary result.
+**Figure 21** - Example of navigable area detection by applying morphological operations on binary result.
 
 ## **Bibliography**
 [1] [TIAN, Jiandong; SUN, Jing; TANG, Yandong. *Tricolor Attenuation Model for Shadow Detection*. IEEE TRANSACTIONS ON IMAGE PROCESSING, vol. 18, pp.2355-2363. 2009.](/bibliography/Tricolor_Attenuation_Model_for_Shadow_Detection.pdf)
