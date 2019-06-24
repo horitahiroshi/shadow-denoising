@@ -131,7 +131,7 @@ Figure 9 - horizontal section analysis.
 
 Figure 10 - vertical section analysis.
 
-### **4.1. The failures**
+### **4.1. The failures and success**
 
 Before the result obtained in this report, some other approaches were tried to remove the shadow from scene.
 
@@ -151,7 +151,7 @@ In this approach the main steps were limiarizing the image based on V channel of
 
 Figure 12 - 2nd approach failed result.
 
-**iii. Third approach: luminance clustering and color clutering.**
+**iii. Third approach: luminance clustering and color-position clustering.**
 
 In this approach the main steps were clustering the image into lit, penumbra and umbra regions based on luminance values (a linear combination amongo R, G, B values), clustering each lit an shaddow regions into 3 clusters based on color and position, then equalizing each shadow regions based on correspondent lit regions.
 
@@ -159,13 +159,27 @@ In this approach the main steps were clustering the image into lit, penumbra and
 
 Figure 13 - 3rd approach failed result.
 
+**iv. Forth approach: luminance clustering and color clustering**
+
+This was the successfull approach, which was explained in this README.md report.
+
+![4thSuccess](./notebook/4thTry.png)
+
+Figure 14 - 4th approache's result.
+
 ## **5. Conclusion**
 
 The idea of removing shadows from a scenario of eucalyptus forest is very complex since there are many small and thin details (dry leafs on the ground, the woods) that are not necessarily noise, depending of what is the purpose of the image caption.
 
 So, in the end, with this approach it was not possible to properly remove the shadow and keeping quality of image, instead a lot of information was lost in the end, as can be seen.
 
-But, if consider this a method to remove the noise caused by the shadow regions when the goal is to segment road from other things (obstacles, fore example), it seems to fulfill the requisite.
+But, if consider this a method to remove the noise caused by the shadow regions when the goal is to segment road from other things (obstacles, fore example) to detect in a simple way navigable paths in this kind of scene for example (of course, not considering other possible obstacles as animals, people), it seems to fulfill the requisite.
+
+To better understand this conclusion, a simple test was done by limiarizing the original image and the unshadowed result, based on Hue thresholing from HSV colorspace (see [Comparing_limiarization notebook](./notebook/Comparing_limiarization.ipynb)).
+
+![Comparing shadowed and unshadowed limiarizations](./notebook/shadowXunshadow_limiarization.png)
+
+Figure 15 - Comparing limiarization of original image and the unshadowed image for navigable area detection based on color.
 
 ## **Bibliography**
 [1] [TIAN, Jiandong; SUN, Jing; TANG, Yandong. *Tricolor Attenuation Model for Shadow Detection*. IEEE TRANSACTIONS ON IMAGE PROCESSING, vol. 18, pp.2355-2363. 2009.](/bibliography/Tricolor_Attenuation_Model_for_Shadow_Detection.pdf)

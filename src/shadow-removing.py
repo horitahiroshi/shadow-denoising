@@ -106,21 +106,22 @@ def restore_shadowed_region(img, lpu):
     umbra_clusters_mask = kmeans.kmeans_routine(umbra_dataset, umbra_centroids, 3, 1)
 
     # Plot the masks, image regions and the resulting clusters of each respective regions
-    # if(debug):
-    #     plt.figure(figsize=(16,10))
-    #     plt.subplot(331);plt.imshow(lit_mask);plt.title("Lit mask")
-    #     plt.subplot(332);plt.imshow(penumbra_mask);plt.title("Penumbra mask")
-    #     plt.subplot(333);plt.imshow(umbra_mask);plt.title("Umbra mask")
-    #     plt.subplot(334);plt.imshow(lit_img);plt.title("Lit regions")
-    #     plt.subplot(335);plt.imshow(penumbra_img);plt.title("Penumbra regions")
-    #     plt.subplot(336);plt.imshow(umbra_img);plt.title("Umbra regions")
-    #     plt.subplot(337);plt.imshow(lit_clusters_mask);plt.title("Lit clusters");plt.colorbar()
-    #     plt.subplot(338);plt.imshow(penumbra_clusters_mask);plt.title("Penumbra clusters");plt.colorbar()
-    #     plt.subplot(339);plt.imshow(umbra_clusters_mask);plt.title("Umbra clusters");plt.colorbar()
+    if(debug):
+        plt.figure(figsize=(16,10))
+        plt.subplot(331);plt.imshow(lit_mask);plt.title("Lit mask")
+        plt.subplot(332);plt.imshow(penumbra_mask);plt.title("Penumbra mask")
+        plt.subplot(333);plt.imshow(umbra_mask);plt.title("Umbra mask")
+        plt.subplot(334);plt.imshow(lit_img);plt.title("Lit regions")
+        plt.subplot(335);plt.imshow(penumbra_img);plt.title("Penumbra regions")
+        plt.subplot(336);plt.imshow(umbra_img);plt.title("Umbra regions")
+        plt.subplot(337);plt.imshow(lit_clusters_mask);plt.title("Lit clusters");plt.colorbar()
+        plt.subplot(338);plt.imshow(penumbra_clusters_mask);plt.title("Penumbra clusters");plt.colorbar()
+        plt.subplot(339);plt.imshow(umbra_clusters_mask);plt.title("Umbra clusters");plt.colorbar()
 
     if(debug):
         print("Umbra regions clustered!\n")
         print("Removing shadows from image...")
+    
     # The shadow removal part
     # Create a copy of original image to receive results
     unshadowed_region = np.copy(img)
@@ -179,46 +180,46 @@ def restore_shadowed_region(img, lpu):
     return unshadowed_region
 
 def main():
+    # read shadowed image to be processed
+    # filename = "../images/shadow5.jpg"
+    filename = str(input()).rstrip()
+    path = "../images/"+filename
+    
     if(debug):
         print("Reading image file...")
-    # read shadowed image to be processed
-    filename = "../images/shadowE.jpg"
-    filename = np.array(["../images/shadowA.jpg",
-                         "../images/shadowB.jpg",
-                         "../images/shadowC.jpg",
-                         "../images/shadowD.jpg",
-                         "../images/shadowE.jpg",
-                         "../images/shadowF.jpg"])
+
+    g = imageio.imread(path)
+
+    if(debug):
+        print("Image read!\n")
+        print("Filtering image...")
     
-    for filex in filename:
-        g = imageio.imread(filex)
+    # filter the color image to remove noise
+    for i in range(3):
+        g[:,:,i] = utils.adaptive_denoising(g[:,:,i],3,0.005,"average")
+                
+    if(debug):
+        print("Image filtered!\n")
+        print("Finding shadow (lit, penumbra, umbra) regions...")
+    
+    # call method to find the shadowed regions
+    lpu = find_shadows(g)
+    
+    # remove noise by applying adaptive denoising
+    lpu = utils.adaptive_denoising(lpu, 3, 0.005, "robust",1)
+    
+    if(debug):
+        print("Shadow detected!\n")
+        print("Initiating shadow removal routine.\n")
+    
+    # call routine for shadow removal
+    f = restore_shadowed_region(g, lpu)
 
-        if(debug):
-            print("Image read!\n")
-            print("Filtering image...")
-        # filter the color image to remove noise
-        for i in range(3):
-            g[:,:,i] = utils.adaptive_denoising(g[:,:,i],3,0.005,"average")
-                    
-        if(debug):
-            print("Image filtered!\n")
-            print("Finding shadow (lit, penumbra, umbra) regions...")
-        # call method to find the shadowed regions
-        lpu = find_shadows(g)
-        # remove noise by applying adaptive denoising
-        lpu = utils.adaptive_denoising(lpu, 3, 0.005, "robust",1)
-        
-        if(debug):
-            print("Shadow detected!\n")
-            print("Initiating shadow removal routine.\n")
-        
-        f = restore_shadowed_region(g, lpu)
-
-        plt.figure(figsize=(16,8))
-        plt.subplot(121);plt.imshow(g);plt.title("original image")
-        plt.subplot(122);plt.imshow(f); plt.title("result of shadow removal")
-        plt.savefig("resulting_"+filex[-11:-4])
-        # plt.show()
+    plt.figure(figsize=(16,8))
+    plt.subplot(121);plt.imshow(g);plt.title("original image")
+    plt.subplot(122);plt.imshow(f); plt.title("result of shadow removal")
+    plt.savefig("resulting_"+path[-11:-4])
+    plt.show()
 
     return 0
 
