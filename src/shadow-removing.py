@@ -61,7 +61,8 @@ def restore_shadowed_region(img, lpu):
     if(debug):
         print("LPU (Lit-Penumbra-Umbra) masks created!\n")
         print("Clustering lit regions...")
-    # clutering lit region into 3 clusters based on color and position coordinates
+
+    # clustering lit region into 3 clusters based on color and position coordinates
     lit_clusters_mask = np.zeros((img.shape[0],img.shape[1]),dtype=np.uint8)
 
     indx = np.arange(0, lit_img.shape[1])
@@ -80,7 +81,7 @@ def restore_shadowed_region(img, lpu):
         print("Lit regions clustered!\n")
         print("Clustering penumbra regions...")
     
-    # clutering penumbra region into 3 clusters based on color
+    # clustering penumbra region into 3 clusters based on color
     penumbra_clusters_mask = np.zeros((img.shape[0],img.shape[1]),dtype=np.uint8)
 
     penumbra_dataset = penumbra_img
@@ -94,7 +95,8 @@ def restore_shadowed_region(img, lpu):
     if(debug):
         print("Penumbra regions clustered!\n")
         print("Clustering umbra regions...")
-    # clutering umbra region into 3 clusters based on color
+    
+    # clustering umbra region into 3 clusters based on color
     umbra_clusters_mask = np.zeros((img.shape[0],img.shape[1]),dtype=np.uint8)
 
     umbra_dataset = umbra_img
@@ -122,7 +124,7 @@ def restore_shadowed_region(img, lpu):
         print("Umbra regions clustered!\n")
         print("Removing shadows from image...")
     
-    # The shadow removal part
+    """ The shadow removal part """
     # Create a copy of original image to receive results
     unshadowed_region = np.copy(img)
 
@@ -183,7 +185,10 @@ def main():
     # read shadowed image to be processed
     # filename = "../images/shadow5.jpg"
     filename = str(input()).rstrip()
-    path = "../images/"+filename
+    if(filename == ""):
+        path = "../images/shadow5.jpg"
+    else:
+        path = "../images/"+filename
     
     if(debug):
         print("Reading image file...")
