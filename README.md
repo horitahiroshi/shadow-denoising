@@ -33,6 +33,8 @@ The cast shadow of an object is partioned into umbra and penunbra regions. The u
 
 ## **3. Methodes**
 
+The methodes of this algorithm were all implemented in *Python* using only the *numpy* library.
+
 ### **3.1. Detecting the shadows**
 
 Shadow detection algorithm must find the image regions in which there are shadows (umbra and penumbra), based on luminance of each pixel.
@@ -167,25 +169,53 @@ This was the successfull approach, which was explained in this README.md report.
 
 Figure 14 - 4th approache's result.
 
+### **4.2. Algorithm applied on unseen images**
+
+Applying the developed algorithm to unseen images, the obtained results can be seen on Figures 15, 16, 17, 18 and 19.
+
+It is important to highlight that the images from Figure 15 and 16 were captured with same sensor used to capture the schene used to develop the algorithm. The other three images were catpured with different sensors.
+
+As can be seen, the results on first two images are reasonable, but on last three images the shadow was not successfuly removed. So this solution might be limited to the type of sensor.
+
+![shadowB](./results/resulting_shadowB.png)
+
+Figure 15 - Unseen image 1.
+
+![shadowC](./results/resulting_shadowC.png)
+
+Figure 16 - Unseen image 2.
+
+![shadowF](./results/resulting_shadowF.png)
+
+Figure 17 - Unseen image 3.
+
+![shadowA](./results/resulting_shadowA.png)
+
+Figure 18 - Unseen image 4.
+
+![shadowD](./results/resulting_shadowD.png)
+
+Figure 19 - Unseen image 5.
+
 ## **5. Conclusion**
 
 The idea of removing shadows from a scenario of eucalyptus forest is very complex since there are many small and thin details (dry leafs on the ground, the woods) that are not necessarily noise, depending of what is the purpose of the image caption.
 
-So, in the end, with this approach it was not possible to properly remove the shadow and keeping quality of image, instead a lot of information was lost in the end, as can be seen.
+So, in the end, with this approach it was not possible to properly remove the shadow and keeping quality of image, instead a lot of information was lost. Further, this algorithms seems to work only for pictures taken with same camera used to capture the scene used to develop this work.
 
-But, if consider this a method to remove the noise caused by the shadow regions when the goal is to segment road from other things (obstacles, fore example) to detect in a simple way navigable paths in this kind of scene for example (of course, not considering other possible obstacles as animals, people), it seems to fulfill the requisite.
+But, if consider this a method to remove the noise caused by the shadow regions when the goal is to segment road from other things (obstacles, for example) to detect in a simple way navigable paths in this kind of scene (of course, not considering other possible obstacles as animals, people), it seems to fulfill the requisite.
 
 To better understand this conclusion, a simple test was done by limiarizing the original image and the unshadowed result, based on Hue thresholing from HSV colorspace (see [Comparing_limiarization notebook](./notebook/Comparing_limiarization.ipynb)).
 
 ![Comparing shadowed and unshadowed limiarizations](./notebook/shadowXunshadow_limiarization.png)
 
-Figure 15 - Comparing limiarization of original image and the unshadowed image for navigable area detection based on color.
+Figure 20 - Comparing limiarization of original image and the unshadowed image for navigable area detection based on color.
 
 A quick example of navigable area can be done by applying some morphological operations on binarized Hue unshaowed image showed above (see implementation on [Comparing_limiarization notebook](./notebook/Comparing_limiarization.ipynb)).
 
 ![Comparing shadowed and unshadowed limiarizations](./notebook/navigable_area_detection.png)
 
-Figure 16 - Example of navigable area detection by applying morphological operations on binary result.
+Figure 21 - Example of navigable area detection by applying morphological operations on binary result.
 
 ## **Bibliography**
 [1] [TIAN, Jiandong; SUN, Jing; TANG, Yandong. *Tricolor Attenuation Model for Shadow Detection*. IEEE TRANSACTIONS ON IMAGE PROCESSING, vol. 18, pp.2355-2363. 2009.](/bibliography/Tricolor_Attenuation_Model_for_Shadow_Detection.pdf)
