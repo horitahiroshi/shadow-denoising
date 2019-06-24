@@ -181,6 +181,12 @@ To better understand this conclusion, a simple test was done by limiarizing the 
 
 Figure 15 - Comparing limiarization of original image and the unshadowed image for navigable area detection based on color.
 
+A quick example of navigable area can be done by applying some morphological operations on binarized Hue unshaowed image showed above (see implementation on [Comparing_limiarization notebook](./notebook/Comparing_limiarization.ipynb)).
+
+![Comparing shadowed and unshadowed limiarizations](./notebook/navigable_area_detection.png)
+
+Figure 16 - Example of navigable area detection by applying morphological operations on binary result.
+
 ## **Bibliography**
 [1] [TIAN, Jiandong; SUN, Jing; TANG, Yandong. *Tricolor Attenuation Model for Shadow Detection*. IEEE TRANSACTIONS ON IMAGE PROCESSING, vol. 18, pp.2355-2363. 2009.](/bibliography/Tricolor_Attenuation_Model_for_Shadow_Detection.pdf)
 
